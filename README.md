@@ -97,3 +97,58 @@ watch: {
 Neste exemplo, sempre que a propriedade contador for alterada, o observador será acionado, permitindo que você reaja a essas alterações.
 
 Esses são alguns dos principais recursos e conceitos ao trabalhar com Vue.js. Eles são fundamentais para a criação de componentes interativos e dinâmicos em seu aplicativo Vue.
+
+## Ciclo de Vida de um Componente Vue.js
+
+Todo componente Vue tem um ciclo de vida que segue uma sequência de eventos predefinidos. Esses eventos, chamados de "hooks", oferecem oportunidades para executar código em momentos específicos do ciclo de vida de um componente.
+
+### beforeCreate()
+
+- Este é o primeiro hook no ciclo de vida de um componente.
+- É executado antes de qualquer configuração ou inicialização.
+- Neste ponto, o componente ainda não tem acesso aos seus dados (data) ou ao DOM.
+- É útil para configurações iniciais que não dependem do estado do componente.
+
+### created()
+
+- Este hook é executado após o componente ter sido criado.
+- Neste ponto, o componente já tem acesso aos seus dados (data) e métodos (methods).
+- Ainda não tem acesso ao DOM renderizado.
+- É usado comumente para realizar solicitações de API, inicializar dados e configurar observadores.
+
+### beforeMount()
+
+- Este hook é executado antes do componente ser montado no DOM.
+- O componente tem acesso a todos os dados, mas ainda não tem acesso aos elementos do DOM.
+- É útil para tarefas que precisam ser concluídas antes da renderização do componente.
+
+### mounted()
+
+- Este hook é executado após o componente ser montado no DOM.
+- É o momento em que o componente está totalmente visível e interativo.
+- Aqui você pode acessar os elementos do DOM e executar ações após a montagem do componente.
+
+### beforeUpdate()
+
+- Este hook é executado antes de uma atualização do componente.
+- É útil para realizar ações antes que os dados do componente sejam atualizados.
+- Pode ser usado para fazer comparações entre o estado atual e o próximo estado.
+
+### updated()
+
+- Este hook é executado após uma atualização do componente.
+- É útil para reagir a mudanças no estado do componente.
+- Você pode acessar o DOM atualizado neste momento, mas use com cuidado para evitar loops infinitos.
+
+### beforeUnmount()
+
+- Este hook é executado antes do desmonte do componente.
+- É útil para realizar tarefas de limpeza e cancelar assinaturas antes que o componente seja removido do DOM.
+
+### unmounted()
+
+- Este hook é executado após o desmonte do componente.
+- O componente não está mais disponível no DOM.
+- É útil para ações finais, como liberar recursos ou cancelar observadores.
+
+Esses hooks fornecem controle sobre o ciclo de vida do seu componente Vue, permitindo que você execute ações específicas em momentos importantes. Eles são uma parte fundamental do Vue.js para criar componentes dinâmicos e interativos.
