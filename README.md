@@ -1,6 +1,6 @@
 # Introdução - Principais Recursos do Vue.js
 
-### Iniciando um Projeto Vue.js
+## Iniciando um Projeto Vue.js
 
 Para iniciar um projeto Vue.js, você pode usar o Vue CLI. Aqui estão os passos para criar um novo projeto:
 
@@ -152,3 +152,104 @@ Todo componente Vue tem um ciclo de vida que segue uma sequência de eventos pre
 - É útil para ações finais, como liberar recursos ou cancelar observadores.
 
 Esses hooks fornecem controle sobre o ciclo de vida do seu componente Vue, permitindo que você execute ações específicas em momentos importantes. Eles são uma parte fundamental do Vue.js para criar componentes dinâmicos e interativos.
+
+## Diretivas Vue
+
+As diretivas Vue são como atributos adicionados a elementos HTML para fornecer funcionalidades adicionais. Elas começam com o prefixo v- e são usadas para controlar o comportamento e a apresentação dos elementos.
+
+### v-bind
+
+A diretiva `v-bind` é usada para associar dinamicamente valores de dados a atributos HTML.
+
+Por exemplo, `v-bind:href` associa o valor de um atributo href a uma expressão ou variável no componente Vue.
+
+É comum usar o atalho `:` para v-bind. Exemplo: `:href="product.url"`.
+
+### v-text e v-html
+
+- `v-text` substitui o conteúdo do elemento pelo valor da expressão.
+
+- `v-html` permite que a expressão seja interpretada como HTML e insere o conteúdo HTML no elemento.
+
+Use `v-text` ou `v-html` quando desejar inserir dinamicamente conteúdo em um elemento.
+
+### v-on
+
+A diretiva `v-on` é usada para ouvir eventos do DOM e executar métodos ou expressões quando esses eventos ocorrem.
+
+Exemplos comuns incluem `@click`, `@input`, `@submit`, etc.
+
+Você pode adicionar argumentos (por exemplo, `@click="handleClick"`) e modificadores (por exemplo, `@click.once`).
+
+### v-if, v-else-if e v-else
+
+Essas diretivas são usadas para adicionar ou remover elementos do DOM com base em condições.
+
+`v-if` condicionalmente renderiza um elemento com base em uma expressão booleana.
+
+`v-else-if` e `v-else` são usados em conjunto com v-if para definir várias condições.
+
+### v-show
+
+A diretiva `v-show` é semelhante a `v-if`, mas em vez de adicionar ou remover elementos do DOM, ela apenas controla a visibilidade usando CSS (display: none).
+
+Use `v-show` quando quiser alternar a visibilidade de um elemento sem renderizar novamente.
+
+### v-for
+
+A diretiva `v-for` é usada para renderizar uma lista de elementos com base em um array ou objeto.
+
+É necessário especificar um valor de `key` exclusivo para cada item renderizado dentro de um loop `v-for`.
+
+### v-model
+
+A diretiva `v-model` é uma maneira conveniente de criar associações bidirecionais entre elementos de formulário (como `<input>`, `<textarea>` e `<select>`) e dados no componente.
+
+Ela simplifica a atualização dos valores dos elementos e dos dados do componente.
+
+### Diretivas Personalizadas
+
+Você também pode criar suas próprias diretivas personalizadas em Vue.js. Para criar uma diretiva personalizada, siga estas etapas:
+
+Dentro do objeto directives em seu componente Vue, defina um novo objeto com o nome da diretiva e implemente os hooks necessários. Por exemplo:
+
+```javascript
+
+directives: {
+    minhaDiretiva: {
+        // Implemente os hooks da diretiva aqui
+    }
+}
+```
+
+Use a diretiva personalizada em seus elementos HTML usando o prefixo v-. Por exemplo:
+
+```html
+<div v-minhaDiretiva></div>
+```
+
+Dentro da implementação da diretiva personalizada, você pode acessar o elemento, argumentos, modificadores e valores associados à diretiva. Por exemplo:
+
+```typescript
+minhaDiretiva: {
+    beforeMount(el: HtmlElement, binding) {
+        // Acesse o elemento e informações associadas à diretiva aqui
+    }
+}
+```
+
+Você pode adicionar funcionalidades específicas à sua diretiva personalizada. No exemplo dado, a diretiva personalizada `minhaDiretiva` altera a cor de fundo ou o texto com base em argumentos e modificadores.
+
+Para tornar a diretiva personalizada global, você pode importá-la em um arquivo separado e registrá-la no aplicativo Vue no `arquivo main.ts` (ou equivalente).
+
+```javascript
+import minhaDiretiva from './diretorio/minhaDiretiva'
+
+const app = createApp(App)
+app.directive('minhaDiretiva', minhaDiretiva)
+app.mount('#app')
+```
+
+Dessa forma, sua diretiva personalizada estará disponível globalmente em todos os componentes Vue do aplicativo.
+
+As diretivas personalizadas são poderosas e flexíveis, permitindo que você adicione funcionalidades personalizadas aos elementos Vue.js em seu aplicativo. Elas são especialmente úteis quando você precisa encapsular lógica de manipulação de DOM complexa e reutilizável.
