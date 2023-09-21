@@ -253,3 +253,75 @@ app.mount('#app')
 Dessa forma, sua diretiva personalizada estará disponível globalmente em todos os componentes Vue do aplicativo.
 
 As diretivas personalizadas são poderosas e flexíveis, permitindo que você adicione funcionalidades personalizadas aos elementos Vue.js em seu aplicativo. Elas são especialmente úteis quando você precisa encapsular lógica de manipulação de DOM complexa e reutilizável.
+
+## Classes Dinamicas
+
+No Vue, você pode adicionar classes condicionalmente a elementos HTML com base em expressões JavaScript usando a diretiva `:class` ou v-bind`:class`. Isso é útil para aplicar estilos CSS a elementos com base em condições ou valores de dados.
+
+Aqui estão dois exemplos de como você pode usar a diretiva `:class`:
+
+### Exemplo com Sintaxe de Objeto
+
+```html
+<template>
+  <div>
+    <h1 :class="{ active: isActive, 'text-danger': isError }">Exemplo de Classes Dinâmicas</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isActive: true,
+      isError: false
+    };
+  }
+};
+</script>
+
+<style>
+.active {
+  font-weight: bold;
+}
+.text-danger {
+  color: red;
+}
+</style>
+```
+
+Neste exemplo, as classes active e text-danger serão adicionadas ao elemento `<h1>` com base nos valores das propriedades `isActive` e `isError` no objeto data. Se `isActive` for `true`, a classe active será adicionada. Se `isError` for `true`, a classe `text-danger` será adicionada.
+
+### Exemplo com Sintaxe de Array
+
+```html
+<template>
+  <div>
+    <h1 :class="['static', { active: isActive, 'text-danger': isError }]">Exemplo de Classes Dinâmicas</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isActive: true,
+      isError: false
+    };
+  }
+};
+</script>
+
+<style>
+.active {
+  font-weight: bold;
+}
+.text-danger {
+  color: red;
+}
+</style>
+```
+
+Neste exemplo, a classe static sempre será aplicada ao elemento `<h1>`, independentemente dos valores de `isActive` e `isError`. Além disso, as classes active e `text-danger` serão adicionadas com base nas condições especificadas.
+
+Lembre-se de que você pode criar expressões condicionais mais complexas dentro das diretivas `:class`, tornando a adição de classes dinâmicas muito flexível e poderosa no Vue.js.
